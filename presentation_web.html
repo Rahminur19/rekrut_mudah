@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentasi Rekrut Mudah - Platform Rekrutmen Vokasi & Magang</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#1e1b4b',
+            },
+            teal: {
+              500: '#14b8a6',
+              600: '#0d9488',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .slide { display: none; }
+    .slide.active { display: flex; }
+    @media print {
+      body { background: white !important; }
+      .slide { display: block !important; page-break-after: always; height: 100vh; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between select-none">
+
+  <!-- Top Bar Control -->
+  <header class="no-print h-14 border-b border-slate-800 px-6 flex items-center justify-between bg-slate-950/80 backdrop-blur">
+    <div class="flex items-center gap-3">
+      <div class="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-sm text-white shadow-lg shadow-indigo-500/30">RM</div>
+      <span class="font-bold text-sm tracking-wide text-slate-200">REKRUT MUDAH <span class="text-xs px-2 py-0.5 ml-2 rounded-full bg-indigo-950 text-indigo-300 border border-indigo-800">Slide Deck</span></span>
+    </div>
+
+    <div class="flex items-center gap-4 text-xs">
+      <span class="text-slate-400">Slide <strong id="currentSlideNum" class="text-indigo-400 text-sm">1</strong> / <span id="totalSlides">10</span></span>
+      <div class="flex items-center gap-1.5 bg-slate-800/80 p-1 rounded-lg border border-slate-700">
+        <button onclick="prevSlide()" class="px-2.5 py-1 rounded hover:bg-slate-700 transition font-medium text-slate-300">‹ Prev</button>
+        <button onclick="nextSlide()" class="px-2.5 py-1 rounded bg-indigo-600 hover:bg-indigo-500 transition font-medium text-white shadow">Next ›</button>
+      </div>
+      <button onclick="toggleFullScreen()" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700">⛶ Fullscreen</button>
+      <button onclick="window.print()" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700">🖨 Cetak PDF</button>
+    </div>
+  </header>
+
+  <!-- Slide Stage -->
+  <main class="flex-1 flex items-center justify-center p-4 md:p-8 overflow-hidden">
+    <div class="w-full max-w-6xl aspect-[16/9] bg-slate-950 rounded-2xl border border-slate-800/80 shadow-2xl p-8 md:p-12 flex flex-col justify-between relative overflow-hidden">
+      
+      <!-- Background Ambient Glow -->
+      <div class="absolute -top-32 -right-32 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- ================= SLIDE 1: COVER ================= -->
+      <section class="slide active flex-col justify-between h-full" data-slide="1">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-800 text-indigo-300 text-xs font-semibold mb-6">
+            <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+            PROPOSAL & DOKUMENTASI ARSITEKTUR v1.0
+          </div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            REKRUT <span class="bg-gradient-to-r from-indigo-400 to-teal-300 bg-clip-text text-transparent">MUDAH</span> 🇮🇩
+          </h1>
+          <p class="text-lg md:text-xl text-slate-400 mt-4 max-w-3xl leading-relaxed">
+            Platform Rekrutmen Vokasi Terpadu: Penempatan Praktik Kerja Lapangan (PKL) Siswa SMK, Magang Mahasiswa, dan Karir Profesional Berbasis <strong>DATH Stack</strong> & <strong>Google Material 3</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-slate-800/80">
+          <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
+            <div class="text-xs text-indigo-400 font-bold uppercase tracking-wider">Arsitektur</div>
+            <div class="text-slate-200 font-semibold text-sm mt-1">Modern Monolith (Django + HTMX)</div>
+          </div>
+          <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
+            <div class="text-xs text-teal-400 font-bold uppercase tracking-wider">Desain Sistem</div>
+            <div class="text-slate-200 font-semibold text-sm mt-1">Google Material Design 3 (M3)</div>
+          </div>
+          <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
+            <div class="text-xs text-amber-400 font-bold uppercase tracking-wider">Pilar Karir</div>
+            <div class="text-slate-200 font-semibold text-sm mt-1">PKL SMK • Magang • Kerja Fulltime</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 2: LATAR BELAKANG & MASALAH ================= -->
+      <section class="slide flex-col justify-between h-full" data-slide="2">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">01. Latar Belakang & PRD</div>
+          <h2 class="text-2xl md:text-3xl font-bold text-white">Tantangan Rekrutmen & Penempatan PKL</h2>
+          <p class="text-sm text-slate-400 mt-1">Kesenjangan antara kebutuhan dunia vokasi, pencari kerja, dan industri mitra.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 my-auto">
+          <!-- Card 1 -->
+          <div class="bg-slate-900/70 border border-rose-500/20 p-5 rounded-xl hover:border-rose-500/40 transition">
+            <div class="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center font-bold text-lg mb-3">🎓</div>
+            <h3 class="font-bold text-rose-300 text-base mb-2">Siswa SMK (Vokasi)</h3>
+            <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+              <li>• Mencari tempat PKL door-to-door tanpa kepastian kuota.</li>
+              <li>• Perusahaan umum tidak paham kompetensi jurusan (RPL, TKJ, AKL, dll).</li>
+              <li>• Portal karir umum tidak menyediakan unggah Surat Pengantar PKL resmi.</li>
+            </ul>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-slate-900/70 border border-amber-500/20 p-5 rounded-xl hover:border-amber-500/40 transition">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-lg mb-3">💼</div>
+            <h3 class="font-bold text-amber-300 text-base mb-2">Pencari Kerja / Mahasiswa</h3>
+            <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+              <li>• Minim transparansi benefit, uang saku magang, dan fasilitas kerja.</li>
+              <li>• Status lamaran "menggantung" tanpa notifikasi progres tahapan.</li>
+              <li>• Form pelamaran rumit dengan reload halaman berulang kali.</li>
+            </ul>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-slate-900/70 border border-indigo-500/20 p-5 rounded-xl hover:border-indigo-500/40 transition">
+            <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold text-lg mb-3">🏢</div>
+            <h3 class="font-bold text-indigo-300 text-base mb-2">Perekrut / HRD Industri</h3>
+            <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+              <li>• Berkas lamaran menumpuk tidak teratur di inbox email.</li>
+              <li>• Tidak memiliki papan ATS (Applicant Tracking System) mandiri.</li>
+              <li>• Ketiadaan kanal komunikasi instan untuk klarifikasi kualifikasi.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-indigo-950/40 border border-indigo-800/60 p-3 rounded-lg text-xs text-indigo-200 flex items-center gap-2">
+          <span class="font-bold text-indigo-400">💡 Target Solusi:</span> Rekrut Mudah menjembatani link-and-match pendidikan vokasi dengan industri melalui platform digital modern.
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 3: SOLUSI PRODUK (3 PILAR) ================= -->
+      <section class="slide flex-col justify-between h-full" data-slide="3">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-teal-400 mb-1">02. Value Proposition</div>
+          <h2 class="text-2xl md:text-3xl font-bold text-white">Solusi Terpadu: Tiga Pilar Karir</h2>
+          <p class="text-sm text-slate-400 mt-1">Mengakomodasi seluruh jenjang talenta dari bangku kejuruan hingga tenaga profesional.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 my-auto">
+          <div class="bg-gradient-to-b from-teal-950/40 to-slate-900 border border-teal-500/30 p-5 rounded-xl">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-teal-900/80 text-teal-300 border border-teal-700">PILAR UTAMA</span>
+            <h3 class="font-bold text-teal-300 text-lg mt-3 mb-2">🎓 PKL SMK & Vokasi</h3>
+            <ul class="text-xs text-slate-300 space-y-2.5">
+              <li>✓ Filter kompetensi jurusan (RPL, TKJ, Otomotif, dll).</li>
+              <li>✓ Upload berkas legalitas: <strong>Surat Pengantar PKL</strong>.</li>
+              <li>✓ Pilihan durasi: 3 bulan, 6 bulan, atau 12 bulan.</li>
+              <li>✓ Verifikasi foto lab & workshop kerja industri.</li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-b from-indigo-950/40 to-slate-900 border border-indigo-500/30 p-5 rounded-xl">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-indigo-900/80 text-indigo-300 border border-indigo-700">MAHASISWA</span>
+            <h3 class="font-bold text-indigo-300 text-lg mt-3 mb-2">💼 Magang Bersertifikat</h3>
+            <ul class="text-xs text-slate-300 space-y-2.5">
+              <li>✓ Magang berbayar dengan transparansi uang saku.</li>
+              <li>✓ Mentoring 1-on-1 dan konversi SKS kampus.</li>
+              <li>✓ One-click apply instan menggunakan CV tersimpan.</li>
+              <li>✓ Penerbitan sertifikat digital pasca magang.</li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-b from-amber-950/40 to-slate-900 border border-amber-500/30 p-5 rounded-xl">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-900/80 text-amber-300 border border-amber-700">PROFESIONAL</span>
+            <h3 class="font-bold text-amber-300 text-lg mt-3 mb-2">🏢 Karir Fresh Graduate</h3>
+            <ul class="text-xs text-slate-300 space-y-2.5">
+              <li>✓ Lowongan Full-Time, Part-Time & Remote.</li>
+              <li>✓ Transparansi rentang gaji dan fasilitas kantor.</li>
+              <li>✓ Reputasi Bintang Perusahaan (1.0 s/d 5.0).</li>
+              <li>✓ Diskusi publik & Q&A interaktif per lowongan.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center text-xs text-slate-500 border-t border-slate-800 pt-3">
+          <span>Standar Kurikulum Merdeka & Vokasi Industri</span>
+          <span class="text-teal-400 font-semibold">Integrasi DUDI (Dunia Usaha & Dunia Industri)</span>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 4: TARGET PERSONA (PRD 2) ================= -->
+      <section class="slide flex-col justify-between h-full" data-slide="4">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">03. User Personas</div>
+          <h2 class="text-2xl md:text-3xl font-bold text-white">Profil Pengguna & Kebutuhan Kunci</h2>
+          <p class="text-sm text-slate-400 mt-1">Personalisasi antarmuka dan hak akses (RBAC) berdasarkan karakteristik pengguna.</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 my-auto">
+          <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex gap-3.5">
+            <div class="w-10 h-10 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold text-sm shrink-0">AS</div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h4 class="font-bold text-white text-sm">Ahmad Sahroni (17 Th)</h4>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-teal-900 text-teal-300">Siswa SMK RPL</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-1">Cepat, mobile-first. Butuh kepastian kuota PKL software development dan tempat mengunggah surat dinas sekolah.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex gap-3.5">
+            <div class="w-10 h-10 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-sm shrink-0">BP</div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h4 class="font-bold text-white text-sm">Budi Prasetyo (22 Th)</h4>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-900 text-indigo-300">Job Seeker Dewasa</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-1">Fresh graduate S1. Ingin melamar cepat via CV instan, mengecek reputasi kantor, dan melacak histori seleksi.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex gap-3.5">
+            <div class="w-10 h-10 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-sm shrink-0">DL</div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h4 class="font-bold text-white text-sm">Dewi Lestari, S.Psi</h4>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-sky-900 text-sky-300">HRD PT Nusantara Tech</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-1">Mengelola ratusan kandidat. Butuh Kanban ATS yang efisien, screening resume cepat, dan jadwal interview langsung.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex gap-3.5">
+            <div class="w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm shrink-0">SA</div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h4 class="font-bold text-white text-sm">Super Admin Platform</h4>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-amber-900 text-amber-300">Platform Operator</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-1">Memastikan kredibilitas perusahaan, validasi status kemitraan industri, kurasi master jurusan, dan moderasi konten.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-500">Mendukung Multi-Role Authentication dengan role permissions terpisah.</div>
+      </section>
+
+      <!-- ================= SLIDE 5: KEBUTUHAN FUNGSIONAL ================= -->
+      <section class="slide flex-col justify-between h-full" data-slide="5">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-teal-400 mb-1">04. Spesifikasi Fungsional</div>
+          <h2 class="text-2xl md:text-3xl font-bold text-white">6 Modul Kebutuhan Fungsional (FR)</h2>
+          <p class="text-sm text-slate-400 mt-1">Ringkasan fungsionalitas inti yang diimplementasikan pada aplikasi.</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3.5 my-auto">
+          <div class="bg-slate-900/90 border border-slate-800 p-3.5 rounded-xl">
+            <div class="text-[10px] font-bold text-indigo-400 uppercase tracking-wider">FR-01</div>
+            <h4 class="font-bold text-white text-sm mt-0.5 mb-1.5">Autentikasi & RBAC</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Pemisahan hak akses Seeker vs Recruiter. Profil khusus upload Resume & Surat Pengantar PKL.</p>
+          </div>
+
+          <div class="bg-slate-900/90 border border-slate-800 p-3.5 rounded-xl">
+            <div class="text-[10px] font-bold text-teal-400 uppercase tracking-wider">FR-02</div>
+            <h4 class="font-bold text-white text-sm mt-0.5 mb-1.5">Live Search (HTMX)</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Pencarian kata kunci real-time debounced 300ms, filter jurusan & tipe kesempatan tanpa reload.</p>
+          </div>
+
+          <div class="bg-slate-900/90 border border-slate-800 p-3.5 rounded-xl">
+            <div class="text-[10px] font-bold text-sky-400 uppercase tracking-wider">FR-03</div>
+            <h4 class="font-bold text-white text-sm mt-0.5 mb-1.5">One-Click Apply</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Modal pelamaran interaktif on-demand, pemilihan berkas profil atau unggah baru instan.</p>
+          </div>
+
+          <div class="bg-slate-900/90 border border-slate-800 p-3.5 rounded-xl">
+            <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">FR-04</div>
+            <h4 class="font-bold text-white text-sm mt-0.5 mb-1.5">Chat Langsung Pelamar-HRD</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Kotak masuk in-app chat dengan polling background 4s, bubble M3, dan tautan konteks posisi.</p>
+          </div>
+
+          <div class="bg-slate-900/90 border border-slate-800 p-3.5 rounded-xl">
+            <div class="text-[10px] font-bold text-amber-400 uppercase tracking-wider">FR-05</div>
+            <h4 class="font-bold text-white text-sm mt-0.5 mb-1.5">Papan ATS Perekrut</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Screening kandidat, pembaruan status seleksi seketika, dan kartu penerbitan jadwal wawancara.</p>
+          </div>
+
+          <div class="bg-slate-900/90 border border-slate-800 p-3.5 rounded-xl">
+            <div class="text-[10px] font-bold text-purple-400 uppercase tracking-wider">FR-06</div>
+            <h4 class="font-bold text-white text-sm mt-0.5 mb-1.5">Rating Bintang & Galeri</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Transparansi reputasi industri (1.0 - 5.0) dan galeri foto fasilitas lab komputer/bengkel kerja.</p>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-500">Seluruh modul memenuhi standar validasi keamanan CSRF, UUID, dan sanitasi input.</div>
+      </section>
+
+      <!-- ================= SLIDE 6: ARSITEKTUR DATH STACK ================= -->
+      <section class="slide flex-col justify-between h-full" data-slide="6">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">05. Arsitektur Sistem</div>
+          <h2 class="text-2xl md:text-3xl font-bold text-white">DATH Stack: Modern Monolith</h2>
+          <p class="text-sm text-slate-400 mt-1">Mendapatkan interaktivitas setara SPA tanpa kompleksitas build frontend ganda.</p>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4 my-auto">
+          <div class="bg-slate-900 border border-emerald-500/30 p-4 rounded-xl">
+            <div class="text-emerald-400 font-bold text-lg mb-1">Django 5</div>
+            <div class="text-[11px] text-emerald-300 font-semibold mb-2">Core Engine & ORM</div>
+            <ul class="text-xs text-slate-300 space-y-1.5">
+              <li>• Enkripsi & Auth Session.</li>
+              <li>• Skema UUID & SQLite/PG.</li>
+              <li>• Business logic & validasi.</li>
+            </ul>
+          </div>
+
+          <div class="bg-slate-900 border border-cyan-500/30 p-4 rounded-xl">
+            <div class="text-cyan-400 font-bold text-lg mb-1">Alpine.js 3</div>
+            <div class="text-[11px] text-cyan-300 font-semibold mb-2">Client Interactivity</div>
+            <ul class="text-xs text-slate-300 space-y-1.5">
+              <li>• Dropdown & dialog modal.</li>
+              <li>• Toast notification store.</li>
+              <li>• Auto-scroll pesan chat.</li>
+            </ul>
+          </div>
+
+          <div class="bg-slate-900 border border-sky-500/30 p-4 rounded-xl">
+            <div class="text-sky-400 font-bold text-lg mb-1">Tailwind CSS</div>
+            <div class="text-[11px] text-sky-300 font-semibold mb-2">Google M3 Styling</div>
+            <ul class="text-xs text-slate-300 space-y-1.5">
+              <li>• Surface Elevation 0-4.</li>
+              <li>• Dynamic brand tokens.</li>
+              <li>• Fully responsive layout.</li>
+            </ul>
+          </div>
+
+          <div class="bg-slate-900 border border-orange-500/30 p-4 rounded-xl">
+            <div class="text-orange-400 font-bold text-lg mb-1">HTMX 2.x</div>
+            <div class="text-[11px] text-orange-300 font-semibold mb-2">HTML-over-the-Wire</div>
+            <ul class="text-xs text-slate-300 space-y-1.5">
+              <li>• Live search debouncing.</li>
+              <li>• Partial DOM updates.</li>
+              <li>• Polling background chat.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg flex items-center justify-between text-xs">
+          <span class="text-slate-300"><strong>Hasil:</strong> Waktu respon ultra-cepat (&lt; 50ms), SEO ramah mesin pencari, dan hemat kuota data.</span>
+          <span class="text-indigo-400 font-mono font-semibold">Zero-Node Build Pipeline</span>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 7: ERD & DATABASE ================= -->
+      <section class="slide flex-col justify-between h-full" data-slide="7">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-teal-400 mb-1">06. Database Schema</div>
+          <h2 class="text-2xl md:text-3xl font-bold text-white">Entity Relationship Diagram (ERD)</h2>
+          <p class="text-sm text-slate-400 mt-1">Struktur relasi data ternormalisasi dengan integritas referensial dan UUID.</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 my-auto">
+          <div class="bg-slate-900 border border-indigo-500/30 p-4 rounded-xl">
+            <h4 class="font-bold text-indigo-400 text-sm mb-2">1. Pengguna & Profil</h4>
+            <ul class="text-xs text-slate-300 space-y-1.5">
+              <li>• <span class="text-white font-mono">User</span>: id (UUID), email, role, is_verified.</li>
+              <li>• <span class="text-white font-mono">UserProfile</span>: resume, surat_pengantar_pkl, institution, major.</li>
+              <li>• <span class="text-white font-mono">CompanyProfile</span>: slug, logo, banner, rating, accepts_pkl.</li>
+            </ul>
+          </div>
+
+          <div class="bg-slate-900 border border-teal-500/30 p-4 rounded-xl">
+            <h4 class="font-bold text-teal-400 text-sm mb-2">2. Lowongan & Kejuruan</h4>
+            <ul class="text-xs text-slate-300 space-y-1.5">
+              <li>• <span class="text-white font-mono">JobCategory</span>: slug, icon, nama.</li>
+              <li>• <span class="text-white font-mono">Major</span>: master jurusan SMK/D3/S1.</li>
+              <li>• <span class="text-white font-mono">JobListing</span>: relasi M2M ke Major, stipend, deadline, job_type.</li>
+              <li>• <span class="text-white font-mono">JobBookmark</span>: wishlist pelamar.</li>
+            </ul>
+          </div>
+
+          <div class="bg-slate-900 border border-sky-500/30 p-4 rounded-xl">
+            <h4 class="font-bold text-sky-400 text-sm mb-2">3. Seleksi ATS & Chat</h4>
+            <ul class="text-xs text-slate-300 space-y-1.5">
+              <li>• <span class="text-white font-mono">Application</span>: unique(job_id, applicant_id), status seleksi.</li>
+              <li>• <span class="text-white font-mono">ApplicationStatusHistory</span>: log audit & interview schedule.</li>
+              <li>• <span class="text-white font-mono">Conversation & ChatMessage</span>: obrolan real-time berkonteks lowongan.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-slate-900/60 border border-slate-800 p-2.5 rounded-lg text-xs text-slate-400 flex justify-between">
+          <span>Integritas: Foreign Key Cascade & SET_NULL sesuai siklus hidup berkas pelamar.</span>
+          <span class="text-teal-400 font-semibold">UUIDv4 Security</span>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 8: ALUR PENGGUNA (FLOW) ================= -->
+      <section class="slide flex-col justify-between h-full" data-slide="8">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">07. User Experience Lifecycle</div>
+          <h2 class="text-2xl md:text-3xl font-bold text-white">Alur Rekrutmen: Pelamar & Perekrut</h2>
+          <p class="text-sm text-slate-400 mt-1">Siklus lengkap dari pencarian lowongan hingga tahap penerimaan.</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 my-auto">
+          <!-- Flow Pelamar -->
+          <div class="bg-slate-900 border border-teal-500/30 p-5 rounded-xl">
+            <h4 class="font-bold text-teal-400 text-base mb-3 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-teal-900 text-teal-300 text-xs flex items-center justify-center">1</span>
+              Alur Pelamar / Siswa PKL
+            </h4>
+            <ol class="text-xs text-slate-300 space-y-2.5">
+              <li><strong class="text-white">1. Registrasi & Profil:</strong> Isi data diri, asal sekolah, dan upload CV + Surat PKL.</li>
+              <li><strong class="text-white">2. Eksplorasi Cerdas:</strong> Filter lowongan PKL sesuai jurusan & kota.</li>
+              <li><strong class="text-white">3. Tanya HRD:</strong> Kirim chat langsung menanyakan ketersediaan kuota.</li>
+              <li><strong class="text-white">4. Lamar Cepat:</strong> One-click apply tanpa berulang kali isi formulir.</li>
+              <li><strong class="text-white">5. Pantau Status:</strong> Dapatkan notifikasi dan jadwal interview terbit.</li>
+            </ol>
+          </div>
+
+          <!-- Flow Rekruter -->
+          <div class="bg-slate-900 border border-indigo-500/30 p-5 rounded-xl">
+            <h4 class="font-bold text-indigo-400 text-base mb-3 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-indigo-900 text-indigo-300 text-xs flex items-center justify-center">2</span>
+              Alur Rekruter / HRD
+            </h4>
+            <ol class="text-xs text-slate-300 space-y-2.5">
+              <li><strong class="text-white">1. Setup Perusahaan:</strong> Upload profil gedung/kantor & verifikasi industri.</li>
+              <li><strong class="text-white">2. Pasang Lowongan:</strong> Tentukan kualifikasi jurusan SMK & uang saku.</li>
+              <li><strong class="text-white">3. Review Berkas:</strong> Cek resume dan keabsahan Surat Pengantar PKL.</li>
+              <li><strong class="text-white">4. Update ATS:</strong> Ubah status pelamar seketika via dropdown HTMX.</li>
+              <li><strong class="text-white">5. Terbitkan Jadwal:</strong> Input link interview & instruksi kehadiran.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-500">Transparansi status 100% menghilangkan fenomena pelamar "digantung" tanpa kejelasan.</div>
+      </section>
+
+      <!-- ================= SLIDE 9: MATERIAL DESIGN 3 ================= -->
+      <section class="slide flex-col justify-between h-full" data-slide="9">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-teal-400 mb-1">08. Design System</div>
+          <h2 class="text-2xl md:text-3xl font-bold text-white">Google Material Design 3 (M3)</h2>
+          <p class="text-sm text-slate-400 mt-1">Penerapan standar UI/UX modern kelas dunia untuk keterbacaan optimal.</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-5 my-auto">
+          <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+            <div class="w-7 h-7 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center mb-3 font-bold text-sm">🎨</div>
+            <h4 class="font-bold text-white text-sm mb-1.5">Warna Dinamis (Tonal Palette)</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Pembeda warna pilar: Indigo (Umum), Teal (PKL Vokasi), Amber (Internship). Kontras rasio memenuhi standar aksesibilitas WCAG AA.</p>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+            <div class="w-7 h-7 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center mb-3 font-bold text-sm">📐</div>
+            <h4 class="font-bold text-white text-sm mb-1.5">Surface Elevation (0 - 4)</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Hierarki kedalaman visual bukan lagi sekadar drop-shadow, melainkan surface tint bertingkat yang nyaman di mata pada malam/siang hari.</p>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+            <div class="w-7 h-7 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center mb-3 font-bold text-sm">🧩</div>
+            <h4 class="font-bold text-white text-sm mb-1.5">Komponen M3 Otentik</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Filter chips, assist chips, badges verifikasi industri, dialog modal melayang, dan snackbars notifikasi yang responsif.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg flex items-center justify-between text-xs text-slate-400">
+          <span>Tipografi Skalabel: Hierarki ukuran Display, Headline, Title, Body, dan Label.</span>
+          <span class="text-teal-400 font-semibold">100% Mobile Responsive</span>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 10: ROADMAP & PENUTUP ================= -->
+      <section class="slide flex-col justify-between h-full" data-slide="10">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">09. Roadmap & Kesimpulan</div>
+          <h2 class="text-2xl md:text-3xl font-bold text-white">Rencana Skalabilitas & Masa Depan</h2>
+          <p class="text-sm text-slate-400 mt-1">Tahapan pengembangan berkelanjutan untuk memperluas dampak rekrutmen vokasi.</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-5 my-auto">
+          <div class="bg-slate-900 border border-teal-500/40 p-5 rounded-xl">
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-900 text-teal-300">FASE 1 (SELESAI)</span>
+            <h4 class="font-bold text-white text-sm mt-3 mb-2">Rilis MVP Plus</h4>
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li>✓ Core DATH Stack & Material 3.</li>
+              <li>✓ 3 Pilar Loker (PKL SMK, Magang, Kerja).</li>
+              <li>✓ Chat In-App Pelamar & Rekruter.</li>
+              <li>✓ Kanban ATS & Live Status.</li>
+            </ul>
+          </div>
+
+          <div class="bg-slate-900 border border-indigo-500/40 p-5 rounded-xl">
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-900 text-indigo-300">FASE 2 (Q4)</span>
+            <h4 class="font-bold text-white text-sm mt-3 mb-2">Otomasi & Sekolah</h4>
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li>• WhatsApp Gateway untuk jadwal interview.</li>
+              <li>• e-Sign tanda tangan digital nota dinas PKL.</li>
+              <li>• Dashboard evaluasi guru pembimbing SMK.</li>
+              <li>• Generator sertifikat digital otomatis.</li>
+            </ul>
+          </div>
+
+          <div class="bg-slate-900 border border-amber-500/40 p-5 rounded-xl">
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-900 text-amber-300">FASE 3 (ROADMAP)</span>
+            <h4 class="font-bold text-white text-sm mt-3 mb-2">AI Smart Matching</h4>
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li>• AI resume parser & match score.</li>
+              <li>• Rekomendasi otomatis lowongan per jurusan.</li>
+              <li>• Analitik serapan lulusan vokasi nasional.</li>
+              <li>• Integrasi portal BKK (Bursa Kerja Khusus).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-slate-800 pt-4 flex items-center justify-between">
+          <div>
+            <div class="font-bold text-white text-base">Terima Kasih! 🙌</div>
+            <div class="text-xs text-slate-400">Siap untuk sesi tanya jawab & demonstrasi aplikasi langsung.</div>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-mono text-indigo-400">http://127.0.0.1:8000/</span>
+            <div class="text-[11px] text-slate-500">Rekrut Mudah 2026</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Bottom Navigation & Shortcuts -->
+  <footer class="no-print h-12 border-t border-slate-800/80 px-6 flex items-center justify-between text-xs text-slate-500 bg-slate-950/60">
+    <div>Gunakan tombol panah keyboard <kbd class="px-1.5 py-0.5 bg-slate-800 text-slate-300 rounded border border-slate-700 font-mono">←</kbd> <kbd class="px-1.5 py-0.5 bg-slate-800 text-slate-300 rounded border border-slate-700 font-mono">→</kbd> atau <kbd class="px-1.5 py-0.5 bg-slate-800 text-slate-300 rounded border border-slate-700 font-mono">Spasi</kbd> untuk berpindah slide.</div>
+    <div class="text-slate-400 font-mono">File: Rekrut_Mudah_Presentasi.pptx & presentation_web.html</div>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 10;
+
+    function updateSlideUI() {
+      document.querySelectorAll('.slide').forEach(slide => {
+        slide.classList.remove('active');
+        if (parseInt(slide.getAttribute('data-slide')) === currentSlide) {
+          slide.classList.add('active');
+        }
+      });
+      document.getElementById('currentSlideNum').innerText = currentSlide;
+      document.getElementById('totalSlides').innerText = totalSlides;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlideUI();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlideUI();
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullScreen();
+      }
+    });
+  </script>
+</body>
+</html>
